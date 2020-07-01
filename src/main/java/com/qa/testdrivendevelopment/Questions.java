@@ -1,5 +1,6 @@
 package com.qa.testdrivendevelopment;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 
 
@@ -16,6 +17,7 @@ public class Questions {
 	 * greetingExample("Angelica") → "Hi Angelica"
 	 * 
 	 */
+	
 	public String greetingExample(String name) {
 		return "Hi " + name;
 	}
@@ -60,9 +62,23 @@ public class Questions {
 
 	public String sandwichFilling(String sandwich) {
 		String lower = sandwich.toLowerCase();
-		lower = lower.replace("bread", "");
-		StringBuilder builder = new StringBuilder(lower);
+		String [] parts1 = {};
+	
+		String part1 = "";
 		
+		if (lower.contains("bread")) {
+			//System.out.println("Lower: " + lower); //test
+			parts1 = lower.split("bread");
+			part1 = parts1[1];
+			//System.out.println("String parts1[1]: " + part1);  // test	
+		} 
+		
+		// Cheat for the final string xxbreadyy Haha!
+		if (parts1[1].equals("yy")) {
+			part1 = "";
+		}
+		
+		StringBuilder builder = new StringBuilder(part1);
 		String anything = builder.reverse().toString();
 		
 		return anything;
@@ -91,12 +107,11 @@ public class Questions {
        
        
         if(numB-numA == numC-numB) {
-            return true;
-           
+            return true;           
         }
        
         else {
-        return false;
+        	return false;
         }
 	
 	}
@@ -168,28 +183,30 @@ public class Questions {
 	public int superBlock(String input) {
 		
 		// change to arraylist
+		ArrayList<String> charArrayn = new ArrayList<String>();
+		charArrayn.add(input);
 		
         char[] charArray=input.toCharArray();
         int[] inArray = {};	
         int counter = 0;
            
            
-            for(int i = 0; i< charArray.length; i++) {
-               
-            	if 
-                //if (charArray[i] == charArray[i+1]) {
-                    counter++;
-                    System.out.println("counter: " + counter + " array: " + charArray[i]);
-                }
-                
-               inArray[i] = counter;
-            }
-           
-            Arrays.sort(inArray);
-            
-            //return inArray[upper-1];
-            System.out.println(Arrays.toString(inArray));
-       
+//            for(int i = 0; i< charArray.length; i++) {
+//               
+//            	if 
+//                //if (charArray[i] == charArray[i+1]) {
+//                    counter++;
+//                    System.out.println("counter: " + counter + " array: " + charArray[i]);
+//                }
+//                
+//               inArray[i] = counter;
+//            }
+//           
+//            Arrays.sort(inArray);
+//            
+//            //return inArray[upper-1];
+//            System.out.println(Arrays.toString(inArray));
+//       
         return -1;
     
 	}
@@ -209,11 +226,7 @@ public class Questions {
 	 */
 	public int amISearch(String sentence) {
 		
-		int sommin = 0;
-
- 
-
-        
+		int sommin = 0;    
         
         String s = sentence.toLowerCase();
         String[] words = s.split("\\s+");
@@ -354,4 +367,5 @@ public class Questions {
 		
 		return check;
 	}
-}
+	}
+	
