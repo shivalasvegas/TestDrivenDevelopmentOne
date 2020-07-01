@@ -1,5 +1,8 @@
 package com.qa.testdrivendevelopment;
 
+import java.util.Arrays;
+
+
 public class Questions {
 
 	/**
@@ -28,9 +31,20 @@ public class Questions {
 	 * multChar("Hi-There") → "HHHiii---TTThhheeerrreee"
 	 */
 	public String multiChar(String input) {
-		return "";
+		StringBuffer buffer = new StringBuffer();
+		
+		for (int i=0; i<input.length(); i++) {
+			
+			for (int j=0; j<3; j++) {
+				buffer.append(input.substring(i, i+1));
+			}
+			
+		}
+		 String anything = buffer.toString();
+		return anything;
 	}
 
+	
 	/**
 	 * Return the string (backwards) that is between the first and last appearance
 	 * of "bread" in the given string, or return the empty string "" if there is not
@@ -45,7 +59,13 @@ public class Questions {
 	 */
 
 	public String sandwichFilling(String sandwich) {
-		return "";
+		String lower = sandwich.toLowerCase();
+		lower = lower.replace("bread", "");
+		StringBuilder builder = new StringBuilder(lower);
+		
+		String anything = builder.reverse().toString();
+		
+		return anything;
 	}
 
 	/**
@@ -61,7 +81,24 @@ public class Questions {
 	 * evenlySpaced(4, 60, 9) → false
 	 */
 	public boolean evenlySpaced(int a, int b, int c) {
-		return false;
+		int[] ints = {a, b, c};
+        Arrays.sort(ints);
+        System.out.println(Arrays.asList(ints[0]));
+       
+        int numA = ints[0];
+        int numB = ints[1];
+        int numC = ints[2];
+       
+       
+        if(numB-numA == numC-numB) {
+            return true;
+           
+        }
+       
+        else {
+        return false;
+        }
+	
 	}
 
 	/**
@@ -76,7 +113,22 @@ public class Questions {
 	 * nMid("Chocolate", 1) → "Choclate"<br>
 	 */
 	public String nMid(String input, int n) {
-    	return "";
+		
+		int lengthStr = input.length();  // find length of string
+		int mid = (lengthStr/2); // find mid point as int (round down)
+		
+		StringBuilder builder = new StringBuilder(input);
+		
+		int incre = n/2;  // find the increment for start and end point
+		int start = mid - incre;  
+		int end  = mid + incre + 1;  // plus 1 here to choose full set  of letters.
+		
+		//System.out.println("mid: " + mid + "Start: " + start + "End: " + end);
+		builder.delete(start, end);
+		
+		String anything = builder.toString();
+				
+    	return anything;
 	}
 
 	/**
@@ -92,7 +144,14 @@ public class Questions {
 	 * endsJava("pythoniscool") → false <br>
 	 */
 	public boolean endsJava(String input) {
-    	return false;
+		
+		String lower = input.toLowerCase();
+		if (lower.endsWith("java")) {
+			return true;
+		}else {
+			return false;
+		}
+    
 	}
 
 	/**
@@ -107,9 +166,35 @@ public class Questions {
 	 * HINT: "a" == "a" if false HINT: "a".equals("a") is true
 	 */
 	public int superBlock(String input) {
-    	return -1;
+		
+		// change to arraylist
+		
+        char[] charArray=input.toCharArray();
+        int[] inArray = {};	
+        int counter = 0;
+           
+           
+            for(int i = 0; i< charArray.length; i++) {
+               
+            	if 
+                //if (charArray[i] == charArray[i+1]) {
+                    counter++;
+                    System.out.println("counter: " + counter + " array: " + charArray[i]);
+                }
+                
+               inArray[i] = counter;
+            }
+           
+            Arrays.sort(inArray);
+            
+            //return inArray[upper-1];
+            System.out.println(Arrays.toString(inArray));
+       
+        return -1;
+    
 	}
 
+	
 	/**
 	 * Given a string - return the number of times "am" appears in the String
 	 * ignoring case - BUT ONLY WHEN the word "am" appears without being followed or
@@ -123,7 +208,31 @@ public class Questions {
 	 * HINT: String.toLowerCase
 	 */
 	public int amISearch(String sentence) {
-    	return -1;
+		
+		int sommin = 0;
+
+ 
+
+        
+        
+        String s = sentence.toLowerCase();
+        String[] words = s.split("\\s+");
+        for (int i = 0; i < words.length; i++) {
+            words[i] = words[i].replaceAll("[^\\w]", "");
+        }
+        
+        for (int i = 0; i< words.length; i++) {
+            if (words[i].equals("am")) {
+                sommin++;
+            }
+            
+//            System.out.println(words[i]);
+            
+        }
+        
+        
+        
+        return sommin;
 	}
 
 	/**
@@ -138,7 +247,19 @@ public class Questions {
 	 * fizzBuzz(8) → null
 	 */
 	public String fizzBuzz(int number) {
-    	return "";
+		
+		if (number%3 == 0 && number%5 != 0) {
+			return "fizz";
+		}
+		
+		if (number%3 != 0 && number%5 == 0) {
+			return "buzz";
+		}
+		
+		if (number%3 == 0 && number%5 == 0) {
+			return "fizzbuzz";			
+		}else { return null;}
+		
 	}
 
 	/**
@@ -162,7 +283,38 @@ public class Questions {
 	 */
 
 	public int largest(String input) {
-    	return -1;
+		
+        String[] words = input.split("\\s+");
+        int upper  = words.length;
+       
+        for (int i = 0; i < upper; i++) {
+            words[i] = words[i].replaceAll("[^\\w]", "");
+            
+        }
+        
+        
+        int [] parsedIntArray  = {0, 0, 0};
+        int [] intArray  = new int[upper];
+        char charInt;	
+        int counter = 0;
+        
+        for (int i = 0; i <upper; i++) {
+        	
+                for (int j = 0; j<words[i].length(); j++) {
+               
+            	charInt = words[i].charAt(j);
+                parsedIntArray[j] = Integer.parseInt(String.valueOf(charInt));
+                counter = counter + parsedIntArray[j]; 
+               
+            }
+              
+            intArray[i] = counter;
+            counter = 0;    
+        }
+        
+        Arrays.sort(intArray);
+        
+        return intArray[upper-1];
 	}
 
 	/**
@@ -179,6 +331,27 @@ public class Questions {
 	 * HINT: String.charAt
 	 */
 	public boolean compares(String word, int index, char letter) {
-    	return false;
+		char  aChar;
+		boolean check = false;
+		//System.out.println("length: " + word.length() + " index: " + index);
+		
+		int newIndex = index-1;
+		
+		if (index > word.length()) {
+			check = false;
+		}
+		
+		if (word.length() >= index) {
+			
+			aChar = word.charAt(newIndex);
+					if (aChar == letter) {
+					check = true;
+				} else {
+					check =  false;
+				}
+			
+		}
+		
+		return check;
 	}
 }
